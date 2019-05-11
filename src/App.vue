@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>My Shop</h1>
+    <product-list :maximum="maximum" :products="products"></product-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import ProductList from "./components/ProductList";
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld,
+  name: "app",
+  data: function() {
+    return {
+      maximum: 99,
+      products: null
+    };
   },
+  components: {
+    FontAwesomeIcon,
+    ProductList
+  },
+  mounted: function() {
+    fetch("https://hplussport.com/api/products/order/price")
+      .then(response => response.json())
+      .then(data => {
+        this.products = data;
+      });
+  }
 };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
