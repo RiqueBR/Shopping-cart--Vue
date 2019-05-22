@@ -10,7 +10,7 @@
           style="width: 60px;"
           v-model="maxAmount"
           @change="$parent.$emit('update:maximum', maxAmount)"
-        >
+        />
         <input
           type="range"
           class="custom-range"
@@ -18,7 +18,7 @@
           max="200"
           v-model="maxAmount"
           @input="$parent.$emit('update:maximum', maxAmount)"
-        >
+        />
       </div>
     </div>
   </transition>
@@ -26,19 +26,19 @@
 
 <script>
 export default {
-  name: "price-slider",
-  data: function() {
+  name: 'price-slider',
+  data() {
     return {
       maxAmount: 99
-    };
+    }
   },
-  props: ["sliderStatus"],
+  props: ['sliderStatus'],
   computed: {
-    sliderState: function() {
-      return this.sliderStatus ? "d-flex" : "d-none";
+    sliderState() {
+      return this.sliderStatus ? 'd-flex' : 'd-none'
     }
   }
-};
+}
 </script>
 
 <style>

@@ -1,17 +1,25 @@
 <template>
-  <transition-group name="fade" tag="div" @beforeEnter="beforeEnter" @enter="enter" @leave="leave">
+  <transition-group
+    name="fade"
+    tag="div"
+    @beforeEnter="beforeEnter"
+    @enter="enter"
+    @leave="leave"
+  >
     <div
       class="row d-flex mb-3 align-items-center"
       v-for="(item, index) in products"
       :key="item.id"
-      v-if="item.price<=Number(maximum)"
+      v-if="item.price <= Number(maximum)"
       :data-index="index"
     >
       <div class="col-1 m-auto">
-        <button class="btn btn-info" @click="$parent.$emit('add', item)">+</button>
+        <button class="btn btn-info" @click="$parent.$emit('add', item)">
+          +
+        </button>
       </div>
       <div class="col-4">
-        <img class="img-fluid d-block" :src="item.image" :alt="item.name">
+        <img class="img-fluid d-block" :src="item.image" :alt="item.name" />
       </div>
       <div class="col">
         <h3 class="text-info">{{ item.name }}</h3>
@@ -25,29 +33,29 @@
 </template>
 
 <script>
-import Price from "./Price.vue";
+import Price from './Price.vue'
+
 export default {
-  name: "product-list",
+  name: 'product-list',
   components: { Price },
-  props: ["products", "maximum"],
+  props: ['products', 'maximum'],
   methods: {
-    beforeEnter: function(el) {
-      el.className = "d-none";
+    beforeEnter(el) {
+      el.className = 'd-none'
     },
-    enter: function(el) {
-      var delay = el.dataset.index * 100;
+    enter(el) {
+      const delay = el.dataset.index * 100
+      setTimeout(function() {
+        el.className = 'row d-flex mb-3 align-items-center animated fadeInRight'
+      }, delay)
+    },
+    leave(el) {
+      const delay = el.dataset.index * 100
       setTimeout(function() {
         el.className =
-          "row d-flex mb-3 align-items-center animated fadeInRight";
-      }, delay);
-    },
-    leave: function(el) {
-      var delay = el.dataset.index * 100;
-      setTimeout(function() {
-        el.className =
-          "row d-flex mb-3 align-items-center animated fadeOutRight";
-      }, delay);
+          'row d-flex mb-3 align-items-center animated fadeOutRight'
+      }, delay)
     }
   }
-};
+}
 </script>

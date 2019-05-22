@@ -1,5 +1,8 @@
 <template>
-  <span>{{ this.prefix + Number.parseFloat(this.value * this.conversion).toFixed(this.precision) }}</span>
+  <span>{{
+    this.prefix +
+      Number.parseFloat(this.value * this.conversion).toFixed(this.precision)
+  }}</span>
 </template>
 
 <script>
@@ -8,7 +11,7 @@ export default {
     value: Number,
     prefix: {
       type: String,
-      default: "$"
+      default: '$'
     },
     precision: {
       type: Number,
@@ -19,5 +22,5 @@ export default {
       default: 1
     }
   }
-};
+}
 </script>
